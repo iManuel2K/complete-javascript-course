@@ -46,3 +46,11 @@ const calculateAmplitude = function (array, array2) {
 };
 
 console.log(calculateAmplitude(temperatures, temperatures2));
+
+const measurementObj = {
+    type: "celcius",
+    origin: "EU",
+    //usedIn: ["EU", "ASIA", "AFRICA", "AUS"],
+};
+
+console.table(measurementObj);
