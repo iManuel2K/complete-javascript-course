@@ -10,7 +10,7 @@
     // 6. If lives are gone, new html for "Game Over!"
     7. If no new highscore, "Beat your highscore, just do it!"
     8. Pressing again!, resets 
-    9. If statements are undefined, null, NaN dont check, show error message
+    // 9. If statements are undefined, null, NaN dont check, show error message
     10. Input number
     11. Counter for tries
 
@@ -22,6 +22,8 @@ let lives = 7;
 let livesHTML = document.querySelector('.lives');
 let inputNumber = document.querySelector('.guess');
 let message = document.querySelector('.message');
+let midBox = document.querySelector('.number');
+let header = document.getElementById('line');
 const checkButton = document.querySelector('#btn');
 const resetButton = document.querySelector('#reset');
 
@@ -60,6 +62,9 @@ function checkUserInput() {
   } else {
     message.textContent = 'Game over!';
     checkButton.disabled = true;
+    midBox.textContent = 'X';
+    midBox.style.backgroundColor = 'red';
+    header.style.borderColor = 'red';
   }
 }
 
