@@ -1,17 +1,7 @@
 'use strict';
 
-/* TODO 
+// TODO: DRY Principle
 
-    // 1. Rename Score to 7 Lives
-    // 2. Dont allow negative numbers to be inputted
-    // 3. Math.Random from 1-20
-    // 4. Highscore variable
-    // 5. If statements when the user found the right number --> Add as highscore, "Congratulations!"
-    // 6. If lives are gone, new html for "Game Over!"
-    // 7. Pressing again!, resets 
-    // 8. If statements are undefined, null, NaN dont check, show error message
-
-*/
 let randomNumber = Math.round(Math.random() * 20);
 let highscore = 0;
 let oldHighscore = 0;
@@ -43,15 +33,17 @@ function checkUserInput() {
       highscore = lives;
       highscoreHTML.textContent = highscore;
       message.textContent = 'Congratulations!';
-    } else if (inputNumber !== randomNumber) {
+    } else if (inputNumber !== randomNumber && inputNumber.value !== '') {
       lives--;
       message.textContent = 'Wrong guess, try again!';
       livesHTML.textContent = lives;
     } else if (
       inputNumber === undefined ||
       inputNumber === NaN ||
-      typeof inputNumber === 'string'
+      typeof inputNumber === 'string' ||
+      !inputNumber.value
     ) {
+      message.textContent = 'No number has been entered!';
       console.error('Invalid value');
     }
   }
