@@ -54,7 +54,8 @@ function checkUserInput() {
     ) {
       console.error('Invalid value');
     }
-  } else {
+  }
+  if (lives == 0) {
     message.textContent = 'Game over!';
     checkButton.disabled = true;
     midBox.textContent = 'X';
