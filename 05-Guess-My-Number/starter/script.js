@@ -1,76 +1,75 @@
-'use strict';
+"use strict";
 
 // TODO: DRY Principle
+// Save highscore to localStorage and location.reload()
 
 let randomNumber = Math.round(Math.random() * 20);
 let highscore = 0;
-let oldHighscore = 0;
 let lives = 7;
-let livesHTML = document.querySelector('.lives');
-let inputNumber = document.querySelector('.guess');
-let message = document.querySelector('.message');
-let midBox = document.querySelector('.number');
-let header = document.getElementById('line');
-let highscoreHTML = document.querySelector('.highscore');
-const checkButton = document.querySelector('#btn');
-const resetButton = document.querySelector('#reset');
+let livesHTML = document.querySelector(".lives");
+let inputNumber = document.querySelector(".guess");
+let message = document.querySelector(".message");
+let midBox = document.querySelector(".number");
+let header = document.getElementById("line");
+let highscoreHTML = document.querySelector(".highscore");
+const checkButton = document.querySelector("#btn");
+const resetButton = document.querySelector("#reset");
+console.log("The random number is: " + randomNumber);
 
-console.log('The random number is: ' + randomNumber);
+inputNumber.addEventListener("click", function (e) {
+  inputNumber.value = e.target.value;
+});
 
-function updateInputValue(e) {
-  inputNumber.textContent = e.target.value;
+function replaceHtmlText(type, message) {
+  return (type.textContent = `${message}`);
 }
 
-function checkUserInput() {
+document.querySelector("#btn").addEventListener("click", function () {
   if (lives >= 1) {
-    if (inputNumber.textContent == randomNumber) {
-      if (highscore < oldHighscore) {
+    if (inputNumber.value == randomNumber) {
+      if (lives > highscore) {
         highscore = lives;
-
-        message.textContent = 'Congratulations! New highscore too!';
         checkButton.disabled = true;
       }
-      highscore = lives;
-      highscoreHTML.textContent = highscore;
-      message.textContent = 'Congratulations!';
-    } else if (inputNumber !== randomNumber && inputNumber.value !== '') {
+
+      replaceHtmlText(highscoreHTML, highscore);
+      replaceHtmlText(message, "Congratulations!");
+      document.querySelector("body").style.backgroundColor = "darkGreen";
+    } else if (inputNumber !== randomNumber) {
       lives--;
-      message.textContent = 'Wrong guess, try again!';
-      livesHTML.textContent = lives;
+      replaceHtmlText(message, "Wrong guess, try again!");
+      replaceHtmlText(livesHTML, lives);
     } else if (
       inputNumber === undefined ||
       inputNumber === NaN ||
-      typeof inputNumber === 'string' ||
+      typeof inputNumber === "string" ||
       !inputNumber.value
     ) {
-      message.textContent = 'No number has been entered!';
-      console.error('Invalid value');
+      replaceHtmlText(message, "No number has been entered!");
+      console.error("Invalid value");
+    } else if (lives === 0) {
+      replaceHtmlText(message, "Game over!");
+      checkButton.disabled = true;
+      replaceHtmlText(midBox, "X");
+      midBox.style.backgroundColor = "red";
+      header.style.borderColor = "red";
     }
   }
-  if (lives == 0) {
-    message.textContent = 'Game over!';
-    checkButton.disabled = true;
-    midBox.textContent = 'X';
-    midBox.style.backgroundColor = 'red';
-    header.style.borderColor = 'red';
-  }
-}
+});
 
-function resetGame() {
+document.querySelector("#reset").addEventListener("click", function () {
   lives = 7;
-  livesHTML.textContent = '7';
-  inputNumber.value = '';
+  replaceHtmlText(livesHTML, "7");
+  inputNumber.value = "";
   randomNumber = Math.round(Math.random() * 20);
 
-  message.textContent = 'Start guessing...';
+  replaceHtmlText(message, "Start guessing...");
   checkButton.disabled = false;
-  midBox.textContent = '?';
-  midBox.style.backgroundColor = '#eee';
-  header.style.borderColor = '#eee';
+  replaceHtmlText(midBox, "?");
+  midBox.style.backgroundColor = "#eee";
+  header.style.borderColor = "#eee";
 
-  console.log('New random number: ' + randomNumber);
-}
+  document.querySelector("body").style.backgroundColor = "#222";
 
-inputNumber.addEventListener('input', updateInputValue);
-checkButton.addEventListener('click', checkUserInput);
-resetButton.addEventListener('click', resetGame);
+  console.log("New random number: " + randomNumber);
+});
