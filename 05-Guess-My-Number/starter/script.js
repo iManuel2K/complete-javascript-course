@@ -6,47 +6,42 @@
     // 2. Dont allow negative numbers to be inputted
     // 3. Math.Random from 1-20
     // 4. Highscore variable
-    5. If statements when the user found the right number --> Add as highscore, "Congratulations!"
+    // 5. If statements when the user found the right number --> Add as highscore, "Congratulations!"
     // 6. If lives are gone, new html for "Game Over!"
-    7. If no new highscore, "Beat your highscore, just do it!"
-    8. Pressing again!, resets 
-    // 9. If statements are undefined, null, NaN dont check, show error message
-    10. Input number
-    11. Counter for tries
+    // 7. Pressing again!, resets 
+    // 8. If statements are undefined, null, NaN dont check, show error message
 
 */
-// document.addEventListener('DOMContentLoaded', function () {
 let randomNumber = Math.round(Math.random() * 20);
 let highscore = 0;
+let oldHighscore = 0;
 let lives = 7;
 let livesHTML = document.querySelector('.lives');
 let inputNumber = document.querySelector('.guess');
 let message = document.querySelector('.message');
 let midBox = document.querySelector('.number');
 let header = document.getElementById('line');
+let highscoreHTML = document.querySelector('.highscore');
 const checkButton = document.querySelector('#btn');
 const resetButton = document.querySelector('#reset');
 
 console.log('The random number is: ' + randomNumber);
-console.log(inputNumber.textContent);
 
 function updateInputValue(e) {
-  inputNumber = e.target.value;
+  inputNumber.textContent = e.target.value;
 }
 
 function checkUserInput() {
-  console.log('You are inside the checkUserInput function');
-
   if (lives >= 1) {
-    if (inputNumber === randomNumber) {
-      // TODO: new and old highscore variables
-      if (highscore < lives) {
+    if (inputNumber.textContent == randomNumber) {
+      if (highscore < oldHighscore) {
         highscore = lives;
 
         message.textContent = 'Congratulations! New highscore too!';
         checkButton.disabled = true;
       }
-
+      highscore = lives;
+      highscoreHTML.textContent = highscore;
       message.textContent = 'Congratulations!';
     } else if (inputNumber !== randomNumber) {
       lives--;
@@ -68,17 +63,21 @@ function checkUserInput() {
   }
 }
 
-// https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset
-// maybe change button to input type reset?
 function resetGame() {
   lives = 7;
+  livesHTML.textContent = '7';
+  inputNumber.value = '';
   randomNumber = Math.round(Math.random() * 20);
-  console.log('Reset has been hit');
-  console.log('new random number: ' + randomNumber);
+
+  message.textContent = 'Start guessing...';
+  checkButton.disabled = false;
+  midBox.textContent = '?';
+  midBox.style.backgroundColor = '#eee';
+  header.style.borderColor = '#eee';
+
+  console.log('New random number: ' + randomNumber);
 }
 
-// TODO: Event listener that updates the inputted value
 inputNumber.addEventListener('input', updateInputValue);
 checkButton.addEventListener('click', checkUserInput);
 resetButton.addEventListener('click', resetGame);
-//});
