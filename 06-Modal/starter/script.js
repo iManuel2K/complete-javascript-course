@@ -1,27 +1,37 @@
-'use strict';
+"use strict";
 
-let hiddenModal = document.getElementById('modal');
-let overlay = document.getElementById('overlay');
-let closeBtn = document.getElementById('closeButton');
+let hiddenModal = document.getElementById("modal");
+let overlay = document.getElementById("overlay");
+let closeBtn = document.getElementById("closeButton");
+let modals = document.querySelectorAll(".show-modal");
 
 function hideModal() {
-  hiddenModal.style.display = 'none';
-  overlay.style.display = 'none';
+  hiddenModal.classList.add("hidden");
+  overlay.classList.add("hidden");
 }
 
-let modals = document.querySelectorAll('.show-modal').forEach(modal => {
-  modal.addEventListener('click', function () {
-    hiddenModal.style.display = 'block';
-    overlay.style.display = 'block';
+modals.forEach(modal => {
+  modal.addEventListener("click", function () {
+    hiddenModal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
   });
 });
 
-closeBtn.addEventListener('click', hideModal);
+closeBtn.addEventListener("click", hideModal);
 
-hiddenModal.addEventListener('mouseleave', hideModal);
+hiddenModal.addEventListener("mouseleave", hideModal);
 
-addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
+/* 
+
+Keydown, when the key is pressed down
+Keyup, after the key has been pressed
+Keypress, as long as it is pressed
+
+*/
+
+addEventListener("keydown", function (e) {
+  console.log(e);
+  if (e.key === "Escape" && !hiddenModal.classList.contains("hidden")) {
     hideModal();
   }
 });
