@@ -46,19 +46,83 @@
 // };
 
 // const functionArr = (a, b) => a - b;
-let test = 0;
+// let test = 0;
 
-if (true) {
-  console.log('Calling from an if statement', this.test);
+// if (true) {
+//   console.log('Calling from an if statement', this.test);
 
-  if (true) {
-    console.log('Calling from a nested if statement', this.test);
-  }
-}
+//   if (true) {
+//     console.log('Calling from a nested if statement', this.test);
+//   }
+// }
 
-function getTest() {
-  console.log('Calling from a function', this.test);
-}
+// function getTest() {
+//   console.log('Calling from a function', this.test);
+// }
 
-this.getTest();
-getTest();
+// this.getTest();
+// getTest();
+
+// function functionExample() {
+//   console.log(this);
+// }
+// functionExample();
+
+// console.log(this);
+
+// const objectConst = {
+//   name: 'Something',
+//   speak() {
+//     console.log(this);
+//   },
+// };
+
+// const newSpeak = objectConst.speak;
+
+// newSpeak();
+
+// var myObject = {
+//   foo: 'bar',
+//   func: function () {
+//     var self = this;
+//     console.log(self);
+//     console.log('outer func:  this.foo = ' + this.foo); //bar
+//     console.log('outer func:  self.foo = ' + self.foo); //bar
+//     (function () {
+//       console.log('inner func:  this.foo = ' + this.foo); //undefined
+//       console.log('inner func:  self.foo = ' + self.foo); //bar
+//     })();
+//   },
+// };
+// myObject.func();
+
+// const getAge = function () {
+//   const age = 20;
+//   console.log(this);
+//   return age;
+// };
+
+// getAge();
+
+// const getAgeArrow = () => {
+//   const age = 20;
+//   console.log(this);
+//   return age;
+// };
+
+// getAgeArrow();
+
+// function function123() {
+//   console.log(this);
+// }
+// function123();
+
+const objectConst = {
+  name: 'Something',
+  speak() {
+    console.log(this);
+  },
+  listen: () => console.log(`I am ${this.name}`),
+};
+
+objectConst.listen();
