@@ -63,66 +63,66 @@
 // this.getTest();
 // getTest();
 
-// Primitive types, when changed they create a new a adress in the call stack
-// e.g. num, adress = 0001, value = 0
-// num2 = num => num2, adress = 0001, value 0
-// num2 = 100, num, adress = 0002, value 0 && num2, adress = 0001, value = 100
-let num = 0;
-let num2 = num;
-num = 100;
-console.log(num2);
+// function functionExample() {
+//   console.log(this);
+// }
+// functionExample();
 
-// Reference types, when changed they change the value for both objects because no new adress is created
-// These types use the Memory Heap
-// numObj, adress = 0003, value = D30F => Memory Heap => adress = D30F, value = {num = 50}
-// numObj2, adress = 0003, value = D30F => Memory Heap => adress = D30F, value = {num = 1000}
-// Now every object that is referenced to numObj has that num value
-const numObj = {
-  value: 50,
-};
+// console.log(this);
 
-const numObj2 = numObj;
-numObj2.value = 1000;
+// const objectConst = {
+//   name: 'Something',
+//   speak() {
+//     console.log(this);
+//   },
+// };
 
-console.log(numObj.value, numObj2.value);
+// const newSpeak = objectConst.speak;
 
-let nameObj = {
-  name: 'Imanuel',
-};
+// newSpeak();
 
-console.log(nameObj);
+// var myObject = {
+//   foo: 'bar',
+//   func: function () {
+//     var self = this;
+//     console.log(self);
+//     console.log('outer func:  this.foo = ' + this.foo); //bar
+//     console.log('outer func:  self.foo = ' + self.foo); //bar
+//     (function () {
+//       console.log('inner func:  this.foo = ' + this.foo); //undefined
+//       console.log('inner func:  self.foo = ' + self.foo); //bar
+//     })();
+//   },
+// };
+// myObject.func();
 
-const nameObj2 = nameObj;
-nameObj2.name = 'Imanuel 2.0';
+// const getAge = function () {
+//   const age = 20;
+//   console.log(this);
+//   return age;
+// };
 
-console.log(nameObj, nameObj2);
-nameObj.name = 'Enkelejd';
-console.log(nameObj, nameObj2);
+// getAge();
 
-nameObj = {};
-console.log(nameObj);
+// const getAgeArrow = () => {
+//   const age = 20;
+//   console.log(this);
+//   return age;
+// };
 
-//Shallow copy/clone, but is the object has another object it wont work
-const shallow = {
+// getAgeArrow();
+
+// function function123() {
+//   console.log(this);
+// }
+// function123();
+
+const objectConst = {
   name: 'Something',
-  shallow3: {
-    name: 'Shallow 3',
+  speak() {
+    console.log(this);
   },
+  listen: () => console.log(`I am ${this.name}`),
 };
 
-const shallow2 = Object.assign({}, shallow);
-console.log(shallow, shallow2);
-
-shallow2.name = 'Else';
-console.log(shallow, shallow2);
-
-// You need to deep clone for this to work
-shallow2.shallow3.name = 'HOHOHO';
-console.log(shallow, shallow2);
-
-// Deepl clone attempt
-const shallowDeep = structuredClone(shallow);
-console.log(shallowDeep);
-
-shallowDeep.shallow3.name = 'Ufffff';
-console.log(shallow, shallow2, shallowDeep);
+objectConst.listen();
