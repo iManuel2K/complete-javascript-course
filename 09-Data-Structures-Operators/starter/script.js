@@ -27,3 +27,31 @@ const restaurant = {
     },
   },
 };
+
+const arr = [1, 2, 3];
+const [a, b, c] = arr;
+console.log(a, b, c);
+console.log(arr);
+
+let [, second, , fourth] = restaurant.categories;
+console.log(second, fourth);
+
+// Switch variables/values
+[second, fourth] = [fourth, second];
+console.log(second, fourth);
+
+// Nested array
+let nest = [1, 2, [3, 4]];
+let [num1, num2, [num3, num4]] = nest;
+[num1, num2, [num3, num4]] = [num4, num3, [num2, num1]];
+console.log(num1, num2, num3, num4);
+
+// Default values
+const defaultArray = ['value', 'value', 'value'];
+const [
+  defA = 'no value',
+  defB = 'no value',
+  defC = 'no value',
+  defD = 'no value',
+] = defaultArray;
+console.log(defA, defB, defC, defD);
