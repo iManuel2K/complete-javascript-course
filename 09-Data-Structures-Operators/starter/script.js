@@ -55,3 +55,63 @@ const [
   defD = 'no value',
 ] = defaultArray;
 console.log(defA, defB, defC, defD);
+
+let nestNest = [1, 2, [3, [99]]];
+let [, , [, [num99]]] = nestNest;
+console.log(num99);
+
+// Decostructing objects
+console.log('--------------------');
+console.log('Objects');
+const { openingHours, categories } = restaurant;
+console.log(openingHours, categories);
+
+// Custom names
+const { location: place, openingHours: hoursOnService } = restaurant;
+console.log(place, hoursOnService);
+
+// Mutating objects
+const testObject = {
+  name: 'firstname',
+  name2: 'lastname',
+};
+
+let { name: firstName, name2: lastName } = testObject;
+
+console.log('------------------');
+console.log('Mutating objects');
+console.log(firstName, lastName);
+
+({ firstName, lastName } = { lastName, firstName });
+
+console.log(firstName, lastName);
+
+// nested deconstruction in objects
+const {
+  thu: { open: openHoursOnThu, close: closingHoursOnThu },
+} = hoursOnService;
+console.log(openHoursOnThu, closingHoursOnThu);
+
+// passing a object as an argument and not the variables of it
+function logObject({ title, place, year = 2021 }) {
+  console.log(title, place, year);
+}
+
+const objToLog = {
+  title: 'Party Beach',
+  place: 'Sarande',
+  year: 2022,
+};
+
+logObject(objToLog);
+
+let aaa = 100,
+  bbb = 200;
+const obj = {
+  aaa: 10,
+  bbb: 20,
+  c: 30,
+  d: 40,
+};
+({ aaa, bbb } = obj);
+console.log(aaa, bbb);
