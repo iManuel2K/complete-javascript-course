@@ -105,13 +105,102 @@ const objToLog = {
 
 logObject(objToLog);
 
-let aaa = 100,
-  bbb = 200;
-const obj = {
-  aaa: 10,
-  bbb: 20,
-  c: 30,
-  d: 40,
+// Spread operator
+const arrToSpread = [1, 2, 3, 4, 5];
+const arrToSpread2 = [...arrToSpread, 6, 7, 8];
+console.log(arrToSpread, arrToSpread2);
+
+const arrToSpreadSim = [...arrToSpread, { ...arrToSpread }];
+console.log(arrToSpreadSim);
+
+const args = [0, 1, 2];
+function myFunction(x, y, z) {}
+console.log(myFunction(...args));
+
+let arr1 = [0, 1, 2];
+let arr2 = [3, 4, 5];
+console.log(arr1);
+//  Prepend all items from arr2 onto arr1
+Array.prototype.unshift.apply(arr1, arr2);
+console.log(arr1);
+
+let arr3 = [0, 1, 2];
+let arr4 = [3, 4, 5];
+console.log(arr3);
+arr3 = [...arr4, ...arr3];
+console.log(arr3);
+
+function spread(...array) {
+  console.log(array);
+}
+
+spread(arr1, arr2, arr3, arr4);
+
+// Joining 2 arrays
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+// Iterables: strings, sets, maps, arrays, NO Objects
+const myName = 'Imanuel';
+const letters = [...myName];
+console.log(letters);
+
+const myInt = 1234567890;
+const integers = [myInt];
+console.log(integers);
+
+// rest operator
+let arrayForRest = [1, 2, 3, 4, 5];
+const [abc, bbc, ...others] = [1, 2, 3, 4, 5, 6];
+
+console.log(abc, bbc, others);
+
+// rest and spread
+const bigArr1 = [1, 2, 3, 4, 3, 2, 1, 2, 23, 12, 3, 1, 312, 3, 213, 2];
+const bigArr2 = ['saj', 'laskd', 'pppp', 'ÖÖÖÖ'];
+
+const [...biggestArray] = [...bigArr1, ...bigArr2];
+console.log(biggestArray);
+
+const objForRest = {
+  title: 'Testing',
+  price: 10000,
+  year: 1999,
 };
-({ aaa, bbb } = obj);
-console.log(aaa, bbb);
+
+const { status = 'available', ...rest } = restaurant.openingHours;
+console.log(status, rest);
+
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+const x = [23, 5, 7];
+add(...x);
+
+console.log('----Short circuiting----');
+
+console.log(3 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log('guest1', guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('---- AND ----');
+console.log(0 && 'Jonas');
+console.log(7 && 'Jonas');
+
+console.log('Hello' && 23 && null && 'jonas');
