@@ -204,3 +204,35 @@ console.log(0 && 'Jonas');
 console.log(7 && 'Jonas');
 
 console.log('Hello' && 23 && null && 'jonas');
+({ aaa, bbb } = obj);
+console.log(aaa, bbb);
+
+// Short Circuiting, looks for the first truthy value
+console.log('' || 'Imanuel');
+console.log(true || 0);
+console.log(undefined || null);
+
+const timePlayed = 0;
+const played = timePlayed ? timePlayed : 'No time played';
+console.log(played);
+
+const played2 = timePlayed || 'No time played';
+console.log(played2);
+
+// AND Operator, looks for falsy values
+console.log('' && 'Imanuel');
+console.log(true && 0);
+console.log(undefined && null);
+console.log('Someone' && 'Imanuel');
+
+const randomConst = 1;
+if (randomConst) {
+  console.log('True');
+}
+
+randomConst && console.log('True');
+
+// Nullish Coalescing Operator, nullish: null or false or undefined will the second value be returned (not if it was 0 or "")
+const timePlayed3 = false;
+const played3 = timePlayed3 ?? 'No time played';
+console.log(played3);
