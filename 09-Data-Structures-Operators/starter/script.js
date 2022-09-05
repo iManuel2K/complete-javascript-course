@@ -208,76 +208,177 @@
 // console.log(aaa, bbb);
 
 // Short Circuiting, looks for the first truthy value
-console.log('' || 'Imanuel');
-console.log(true || 0);
-console.log(undefined || null);
+// console.log('' || 'Imanuel');
+// console.log(true || 0);
+// console.log(undefined || null);
 
-const timePlayed = 0;
-const played = timePlayed ? timePlayed : 'No time played';
-console.log(played);
+// const timePlayed = 0;
+// const played = timePlayed ? timePlayed : 'No time played';
+// console.log(played);
 
-const played2 = timePlayed || 'No time played';
-console.log(played2);
+// const played2 = timePlayed || 'No time played';
+// console.log(played2);
 
 // AND Operator, looks for falsy values
-console.log('' && 'Imanuel');
-console.log(true && 0);
-console.log(undefined && null);
-console.log('Someone' && 'Imanuel');
+// console.log('' && 'Imanuel');
+// console.log(true && 0);
+// console.log(undefined && null);
+// console.log('Someone' && 'Imanuel');
 
-const randomConst = 1;
-if (randomConst) {
-  console.log('True');
+// const randomConst = 1;
+// if (randomConst) {
+//   console.log('True');
+// }
+
+// randomConst && console.log('True');
+
+// // Nullish Coalescing Operator, nullish: null or false or undefined will the second value be returned (not if it was 0 or "")
+// const timePlayed3 = false;
+// const played3 = timePlayed3 ?? 'No time played';
+// console.log(played3);
+
+// console.log('----------------------------');
+
+// let testNumber = 0;
+// testNumber ||= 100;
+// console.log(testNumber);
+
+// let testNumber2 = 0;
+// testNumber2 ??= 100;
+// console.log(testNumber2);
+
+// console.log('----------------------------');
+// const testStringArray = ['a', 'b', 'c'];
+// for (const item of testStringArray.entries()) console.log(item);
+
+// console.log('----------------------------');
+// const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+// const months = [
+//   'January',
+//   'February',
+//   'March',
+//   'April',
+//   'May',
+//   'June',
+//   'July',
+//   'August',
+//   'September',
+//   'October',
+//   'November',
+//   'December',
+// ];
+// const obj = {
+//   [weekdays[0]]: 'First day',
+//   [weekdays[1]]: 'Second day',
+//   [weekdays[2]]: 'Third day',
+//   [weekdays[3]]: 'Fourth day',
+//   [weekdays[4]]: 'Fifth day',
+//   [`Saturda` + 'y']: 'Sixth day',
+//   basicFunction() {
+//     console.log('Basic function');
+//   },
+//   months,
+// };
+
+// console.log(obj);
+
+// Sets, are like an array, but it removes all duplicates, because it wants unique values
+// const foodSet = new Set(['Pasta', 'Pita', 'Souvlaki', 'Noodles', 'Noodles']);
+
+// console.log(foodSet);
+// console.log(new Set('Imanuel'));
+
+// console.log(foodSet.size);
+// console.log(foodSet.has('Souvlaki'));
+
+// foodSet.add('Cooked Rice');
+// foodSet.add('Pasta');
+// console.log(foodSet);
+
+// foodSet.delete('Pita');
+// console.log(foodSet);
+
+// console.log(foodSet.entries());
+
+// //Example, from an array with duplicates into a Set with unique values, converted also into an array
+// const exampleArray = ['Time', 'Machine', 'Clock', 'Time', 'Clock'];
+// const exampleSet = [...new Set(exampleArray)];
+// console.log(exampleSet);
+
+// const exampleValue1 = exampleSet.values();
+// console.log(exampleValue1.next().value);
+// console.log(exampleValue1.next().value);
+// console.log(exampleValue1.next().value);
+
+// const exampleValue1WithKeys = exampleSet.keys();
+// console.log(exampleValue1WithKeys.next().value);
+// console.log(exampleValue1WithKeys.next());
+
+// const userInputsStorage = new Set();
+// const userInput = prompt('Enter a value: ').toLowerCase().trim();
+// const userInput2 = prompt('Enter a second value: ').toLowerCase().trim();
+
+// userInputsStorage.add(userInput, userInput2);
+// console.log(userInputsStorage);
+
+//Maps
+// const playlist = new Map([
+//   ['title', 'Mi amor'],
+//   ['artist', 'noizy'],
+//   [true, 'Yes thats our trapper'],
+//   [false, 'No its not our trapper'],
+// ]);
+
+// const usersGuess = prompt(
+//   `Who is the artist of the song ${playlist.get('title')}?`
+// )
+//   .toLowerCase()
+//   .trim();
+// console.log(playlist.get(usersGuess === playlist.get('artist')));
+
+// const obj = {
+//   player: 'Bob',
+//   score: 10,
+//   level: 'easy',
+//   time: '10:00',
+//   date: '01/01/2020',
+// };
+
+// const map = new Map(Object.entries(obj));
+// console.log(map);
+
+// for (const [key, value] of map.entries()) {
+//   console.log(key, value);
+// }
+
+// console.log(...playlist);
+
+//Strings
+const str = 'Some string to test';
+console.log(str.slice(str.indexOf('to'), str.lastIndexOf(' ')));
+console.log(str.slice(-4));
+console.log(str.slice(0, -4));
+
+const frontSeats = 'A B C D E A';
+const middleSeats = 'F G H I J K L';
+const lastSeats = 'M N O P Q R S T U V W X Y Z';
+
+const userInput = prompt('Enter a seat: ').toUpperCase().trim().toString();
+
+function checkIfMiddleSeat(input) {
+  const isMiddleSeat = middleSeats.slice(
+    middleSeats.indexOf(input),
+    middleSeats.indexOf(input) + 1
+  );
+
+  return middleSeats;
 }
+checkIfMiddleSeat(userInput);
 
-randomConst && console.log('True');
+console.log(frontSeats.replaceAll('A', 'XX'));
 
-// Nullish Coalescing Operator, nullish: null or false or undefined will the second value be returned (not if it was 0 or "")
-const timePlayed3 = false;
-const played3 = timePlayed3 ?? 'No time played';
-console.log(played3);
+const [firstName, lastName] = 'Imanuel Harizi'.split(' ');
+console.log(firstName, lastName);
 
-console.log('----------------------------');
-
-let testNumber = 0;
-testNumber ||= 100;
-console.log(testNumber);
-
-let testNumber2 = 0;
-testNumber2 ??= 100;
-console.log(testNumber2);
-
-console.log('----------------------------');
-const testStringArray = ['a', 'b', 'c'];
-for (const item of testStringArray.entries()) console.log(item);
-
-console.log('----------------------------');
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-const obj = {
-  [weekdays[0]]: 'First day',
-  [weekdays[1]]: 'Second day',
-  [weekdays[2]]: 'Third day',
-  [weekdays[3]]: 'Fourth day',
-  [weekdays[4]]: 'Fifth day',
-  [`Saturda` + 'y']: 'Sixth day',
-  basicFunction() {
-    console.log('Basic function');
-  },
-  months,
-};
-
-console.log(obj);
+let toPad = 'yes thats me!';
+console.log(toPad.padStart(100, 'Imanuel'));
